@@ -3,5 +3,25 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- 登陆页面的 -->
+    <dimen name="activity_login_qq_login_iv_width">56.0dp</dimen>
+    <dimen name="activity_login_qq_login_iv_height">80.0dp</dimen>
+    <dimen name="activity_login_wechat_login_iv_width">56.0dp</dimen>
+    <dimen name="activity_login_wechat_login_iv_height">80.0dp</dimen>
+    <dimen name="activity_login_sina_weibo_login_iv_width">56.0dp</dimen>
+    <dimen name="activity_login_sina_weibo_login_iv_height">80.0dp</dimen>
+
+    <!-- 以下是通用 -->
+    <dimen name="margin10">10.0dp</dimen>
+    <!-- 以下是字体大小 -->
+    <dimen name="textsize14">14sp</dimen>
+    <dimen name="textsize13">13sp</dimen>
+    <dimen name="textsize12">12sp</dimen>
+    <dimen name="textsize15">15sp</dimen>
+    <dimen name="textsize16">16sp</dimen>
+    <dimen name="textsize17">17sp</dimen>
+    <dimen name="textsize18">18sp</dimen>
+    <dimen name="textsize19">19sp</dimen>
+    <dimen name="textsize20">20sp</dimen>
 
 </resources>

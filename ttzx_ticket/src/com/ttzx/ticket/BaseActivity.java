@@ -1,5 +1,6 @@
 package com.ttzx.ticket;
 
+import android.app.Activity;
 import android.app.Application;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -25,14 +26,7 @@ import com.ttzx.ticket.util.MySharedPreferences;
 import com.ttzx.ticket.util.PhoneInforUtils;
 import com.ttzx.ticket.view.TitleBar;
 
-public abstract class BaseActivity extends FragmentActivity {
-	/** GET请求方式 */
-	protected int GET = 0;
-	/** POST请求方式 */
-	protected int POST = 1;
-	/** 创建请求的工具 */
-	private HttpUtils httpUtils = new HttpUtils();
-
+public abstract class BaseActivity extends Activity {
 	/** 全局的LayoutInflater对象，已经完成初始化. */
 	public LayoutInflater mInflater;
 
@@ -72,14 +66,9 @@ public abstract class BaseActivity extends FragmentActivity {
 
 	/** 主内容布局. */
 	protected RelativeLayout contentLayout = null;
-	/** 上拉加载更多 */
-	public static final int LOAD_DATA = 0X11;
-	/** 下拉刷新 */
-	public static final int REFRESH = 0X13;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		// setContentView(view);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -159,61 +148,6 @@ public abstract class BaseActivity extends FragmentActivity {
 	public abstract void setOnClick();
 
 	public abstract void init();
-
-	public abstract void onResults(HttpException error, String results,
-			int identifying);
-
-	/**
-	 * 
-	 * @param params
-	 *            参数
-	 * @param type
-	 *            get或者post的方式
-	 * @param url
-	 *            链接
-	 * @param identifying
-	 *            标识用于标识不同的url
-	 */
-	public void sendHttpRTS(RequestParams params, int type, String url,
-			final int identifying) {
-		httpUtils.configTimeout(20000);
-		if (type == GET) {
-			httpUtils.send(HttpMethod.GET, url, new RequestCallBack<String>() {
-
-				@Override
-				public void onFailure(HttpException error, String results) {
-					// TODO Auto-generated method stub
-					onResults(error, results, identifying);
-				}
-
-				@Override
-				public void onSuccess(ResponseInfo<String> results) {
-					// TODO Auto-generated method stub
-					onResults(null, results.result, identifying);
-				}
-			});
-		} else {
-			httpUtils.send(HttpMethod.POST, url, params,
-					new RequestCallBack<String>() {
-
-						@Override
-						public void onFailure(HttpException error,
-								String results) {
-							// TODO Auto-generated method stub
-
-							onResults(error, results, identifying);
-
-						}
-
-						@Override
-						public void onSuccess(ResponseInfo<String> results) {
-							// TODO Auto-generated method stub
-							onResults(null, results.result, identifying);
-
-						}
-					});
-		}
-	}
 
 	@Override
 	protected void onDestroy() {
